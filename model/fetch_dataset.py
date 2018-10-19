@@ -11,4 +11,6 @@ def read_dataset():
 
     bodies = [body for body in dataset["text"]]
 
-    return (titles, bodies)
+    labels = [label for label in dataset["label"]]
+    return (titles, bodies, labels)
+    
