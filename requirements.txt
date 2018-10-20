@@ -1,3 +1,4 @@
 flask
 flask_restful
 newspaper3k
+sklearn

@@ -5,7 +5,7 @@ from main import rate
 
 class fake_o_meter(Resource):
     def post(self):
-
+        
         post_parser = reqparse.RequestParser()
         post_parser.add_argument('url')
         args = post_parser.parse_args()
