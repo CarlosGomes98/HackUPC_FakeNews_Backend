@@ -10,7 +10,4 @@ def rate(title, body):
     # Get score from article searcher
     search_score = searcher_score(title, body)
 
-    return classifier_score, search_score
-
-
-print(rate("Spain makes too much paella for the people to handle", "Catalonia declares independence from Spain."))
+    return classifier_score * 0.8 + search_score * 0.2
