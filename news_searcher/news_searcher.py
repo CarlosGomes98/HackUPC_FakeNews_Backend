@@ -1,4 +1,5 @@
 import requests
+from parser_and_flask.app import ArticleParser
 
 api_key = 'e919320c855c40638b2534863e3974df'
 
@@ -21,9 +22,12 @@ def searcher_score(title, body):
 
     print("Searching for articles from google........")
     results = search_articles(title)
+    print(results)
 
     print("Fetching closest articles.......")
+    print(ArticleParser(results[0]["url"]).parse())
+
+    print("Finding similarity with found article")
 
 
-    print(results)
     return 0
