@@ -1,8 +1,6 @@
 from flask import Flask
 from flask_restful import Resource, Api, reqparse
-from parser.article_parser import ArticleParser
-from model.classifier import Classifier
-from  news_searcher.news_searcher import searcher_score
+from article_parser.article_parser import ArticleParser
 from main import rate
 
 class fake_o_meter(Resource):

@@ -1,6 +1,5 @@
 from newspaper import Article
 
-
 class ArticleParser:
     def __init__(self, url):
         self.url = url
