@@ -18,16 +18,16 @@ def search_articles(query):
 
 
 def searcher_score(title, body):
-    print("Calculating search score -----------------------------")
-
-    print("Searching for articles from google........")
-    results = search_articles(title)
-    print(results)
-
-    print("Fetching closest articles.......")
-    print(ArticleParser(results[0]["url"]).parse())
-
-    print("Finding similarity with found article")
+    # print("Calculating search score -----------------------------")
+    #
+    # print("Searching for articles from google........")
+    # results = search_articles(title)
+    # print(results)
+    #
+    # print("Fetching closest articles.......")
+    # print(ArticleParser(results[0]["url"]).parse())
+    #
+    # print("Finding similarity with found article")
 
 
     return 0
