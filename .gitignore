@@ -15,7 +15,7 @@
 model/__pycache__/*
 *.pyc
 *.sav
-
+*.iml
 
 ### JupyterNotebook ###
 .ipynb_checkpoints
