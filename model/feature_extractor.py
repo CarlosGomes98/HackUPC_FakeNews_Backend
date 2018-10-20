@@ -26,15 +26,14 @@ def extract_tf_idf(texts_dataset, doIFillItUpRealNice=False):
     # for training, create new vectorizer
     else:
         vectorizer = TfidfVectorizer()
-        print(len(texts_dataset))
-        vectorizer.fit(texts_dataset[:10])
+        vectorizer.fit(texts_dataset)
         pickle.dump(vectorizer, open(tfidf_pickle_path, 'wb'))
 
     X = vectorizer.transform(texts_dataset)
     if doIFillItUpRealNice:
         X = X.todense()
 
-    print(X)
+    return X
 
 
 def extract_features(titles, bodies):
