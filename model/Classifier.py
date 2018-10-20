@@ -49,6 +49,5 @@ class Classifier:
     def predict(self, title, body):
         features = feature_extractor.extract_features([title], [body])
 
-        return self.clf.predict_proba(features)
-
-
+        trust_score = self.clf.predict_proba(features)[0][0] * 10
+        return round(trust_score, 2)
