@@ -1,5 +1,5 @@
 import requests
-from parser_and_flask.app import ArticleParser
+from article_parser.article_parser import ArticleParser
 
 api_key = 'e919320c855c40638b2534863e3974df'
 
