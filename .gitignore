@@ -12,6 +12,11 @@
 *.vcf
 *.xml
 
+model/__pycache__/*
+
+*.sav
+
+
 ### JupyterNotebook ###
 .ipynb_checkpoints
 */.ipynb_checkpoints/*
