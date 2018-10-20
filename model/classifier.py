@@ -2,10 +2,9 @@ from sklearn import linear_model
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 from os import path
-import feature_extractor
-import fetch_dataset
+from model.feature_extractor import extract_features
+from model.fetch_dataset import read_dataset
 import pickle
-import numpy as np
 
 tfidf_pickle_path = path.join('model', 'pickles')
 
@@ -20,9 +19,12 @@ class Classifier:
         if path.exists(get_model_pickle_path()):
             self.clf = pickle.load(open(get_model_pickle_path(), 'rb'))
 
+    def has_model(self):
+        return self.clf is not None
+
     def train(self):
 
-        dataset = fetch_dataset.read_dataset("model/data/train.csv")
+        dataset = read_dataset("model/data/train.csv")
         train_set, test_set = train_test_split(dataset, test_size=0.2)
 
         train_titles = train_set[:, 0].tolist()
@@ -39,7 +41,7 @@ class Classifier:
         reg = linear_model.LogisticRegression(verbose=1)
         reg.fit(X_train, Y_train)
 
-        X_test = feature_extractor.extract_features(test_titles, test_bodies)
+        X_test = extract_features(test_titles, test_bodies)
 
         print("Accuracy", accuracy_score(reg.predict(X_test), Y_test))
 
@@ -47,7 +49,10 @@ class Classifier:
         self.clf = reg
 
     def predict(self, title, body):
-        features = feature_extractor.extract_features([title], [body])
+        if not self.has_model():
+            self.train()
+
+        features = extract_features([title], [body])
 
         trust_score = self.clf.predict_proba(features)[0][0] * 10
         return round(trust_score, 2)

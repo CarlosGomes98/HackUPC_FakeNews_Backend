@@ -1,6 +1,0 @@
-from Classifier import Classifier
-
-clf = Classifier()
-
-
-print(clf.predict("Spain makes too much paella for the people to handle", "Catalonia declares independence from Spain."))
