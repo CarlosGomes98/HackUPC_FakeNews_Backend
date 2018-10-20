@@ -6,7 +6,7 @@ from scipy import sparse
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
 
-tfidf_pickle_path = 'pickles'
+tfidf_pickle_path = 'model/pickles'
 
 class Text(Enum):
     TITLE = 1
