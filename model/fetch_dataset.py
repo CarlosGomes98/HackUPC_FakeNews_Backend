@@ -1,16 +1,12 @@
 import pandas as pd
 
 
-def read_dataset():
-    dataset = pd.read_csv("data/train.csv")
+def read_dataset(path):
+    dataset = pd.read_csv(path)
     dataset = dataset.drop("id", axis=1)
-    print(dataset.columns)
+    dataset = dataset.drop("author", axis=1)
+    dataset = dataset.dropna(axis=0)
     dataset["text"] = dataset["text"].str.replace("\n", "")
-
-    titles = [title for title in dataset["title"]]
-
-    bodies = [body for body in dataset["text"]]
-
-    labels = [label for label in dataset["label"]]
-    return (titles, bodies, labels)
-    
+    dataset = dataset.values
+    print(dataset.shape)
+    return dataset

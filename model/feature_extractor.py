@@ -11,11 +11,12 @@ def fill_it_up_real_nice(x):
 
 
 def fit_tf_idf(texts_dataset):
-    vectorizer = TfidfVectorizer()
-    vectorizer.fit(corpus)
-    pickle.dump(vectorizer, open(tfidf_pickle_path, 'wb'))
-
-    return vectorizer
+    # vectorizer = TfidfVectorizer()
+    # vectorizer.fit(corpus)
+    # pickle.dump(vectorizer, open(tfidf_pickle_path, 'wb'))
+    
+    # return vectorizer
+    pass
 
 
 def extract_tf_idf(texts_dataset, doIFillItUpRealNice=False):
@@ -25,7 +26,8 @@ def extract_tf_idf(texts_dataset, doIFillItUpRealNice=False):
     # for training, create new vectorizer
     else:
         vectorizer = TfidfVectorizer()
-        vectorizer.fit(corpus)
+        print(len(texts_dataset))
+        vectorizer.fit(texts_dataset[:10])
         pickle.dump(vectorizer, open(tfidf_pickle_path, 'wb'))
 
     X = vectorizer.transform(texts_dataset)
@@ -39,16 +41,3 @@ def extract_features(titles, bodies):
     bodies_tfidf = extract_tf_idf(bodies)
 
     return bodies_tfidf
-
-
-corpus = [
-        'This is the first document.',
-        'This document is the second document.',
-        'And this is the third one.',
-        'Is this the first document?',
-    ]
-new_sentence = 'This is the third document'
-extract_tf_idf([corpus[0]])
-
-
-
