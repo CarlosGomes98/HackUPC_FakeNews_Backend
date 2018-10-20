@@ -16,6 +16,7 @@ def get_model_pickle_path():
 class Classifier:
 
     def __init__(self):
+        self.clf = None
         if path.exists(get_model_pickle_path()):
             self.clf = pickle.load(open(get_model_pickle_path(), 'rb'))
 
@@ -24,21 +25,31 @@ class Classifier:
 
     def train(self):
 
-        dataset = read_dataset("model/data/train.csv")
+        dataset = read_dataset("data/train.csv")
         train_set, test_set = train_test_split(dataset, test_size=0.2)
 
         train_titles = train_set[:, 0].tolist()
         train_bodies = train_set[:, 1].tolist()
         Y_train = train_set[:, 2]
+        ones = 0
+        zeros = 0
+        for entry in Y_train:
+            if entry == 1:
+                ones += 1
+            else:
+                zeros += 1
+
+        print("ones", ones)
+        print("zeros", zeros)
         Y_train = Y_train.astype('int')
         test_titles = test_set[:, 0].tolist()
         test_bodies = test_set[:, 1].tolist()
         Y_test = test_set[:, 2].astype('int')
 
-        X_train = feature_extractor.extract_features(train_titles, train_bodies)
+        X_train = extract_features(train_titles, train_bodies)
 
         print(X_train.shape, Y_train.shape)
-        reg = linear_model.LogisticRegression(verbose=1)
+        reg = linear_model.LogisticRegression(verbose=1, C = 1e5)
         reg.fit(X_train, Y_train)
 
         X_test = extract_features(test_titles, test_bodies)
@@ -53,6 +64,5 @@ class Classifier:
             self.train()
 
         features = extract_features([title], [body])
-
         trust_score = self.clf.predict_proba(features)[0][0] * 10
         return round(trust_score, 2)

@@ -6,7 +6,6 @@ def rate(title, body):
     # Get score from trained classifier
     clf = Classifier()
     classifier_score = clf.predict(title, body)
-
     # Get score from article searcher
     search_score = searcher_score(title, body)
 
