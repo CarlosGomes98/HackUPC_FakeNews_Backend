@@ -2,3 +2,9 @@ flask
 flask_restful
 newspaper3k
 sklearn
+panda
+numpy
+scipy
+enum
+pandas
+requests
