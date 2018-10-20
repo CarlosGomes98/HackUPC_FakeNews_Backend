@@ -12,6 +12,9 @@
 *.vcf
 *.xml
 
+### Gherkin ###
+*.sav
+
 ### JupyterNotebook ###
 .ipynb_checkpoints
 */.ipynb_checkpoints/*
