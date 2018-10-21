@@ -10,4 +10,4 @@ def rate(title, body):
     related_article, search_score = searcher_score(title, body)
     #search_score = min(0.9, search_score * 2)
 
-    return classifier_score * 0.5 + search_score * 0.5
+    return classifier_score * 0.7 + search_score * 0.3, related_article

@@ -49,7 +49,7 @@ class Classifier:
         X_train = extract_features(train_titles, train_bodies)
 
         print(X_train.shape, Y_train.shape)
-        reg = linear_model.LogisticRegression(verbose=1, C = 1e5)
+        reg = linear_model.LogisticRegression(verbose=1)
         reg.fit(X_train, Y_train)
 
         X_test = extract_features(test_titles, test_bodies)
