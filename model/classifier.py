@@ -31,24 +31,12 @@ class Classifier:
         train_titles = train_set[:, 0].tolist()
         train_bodies = train_set[:, 1].tolist()
         Y_train = train_set[:, 2]
-        ones = 0
-        zeros = 0
-        for entry in Y_train:
-            if entry == 1:
-                ones += 1
-            else:
-                zeros += 1
-
-        print("ones", ones)
-        print("zeros", zeros)
         Y_train = Y_train.astype('int')
         test_titles = test_set[:, 0].tolist()
         test_bodies = test_set[:, 1].tolist()
         Y_test = test_set[:, 2].astype('int')
 
         X_train = extract_features(train_titles, train_bodies)
-
-        print(X_train.shape, Y_train.shape)
         reg = linear_model.LogisticRegression(verbose=1)
         reg.fit(X_train, Y_train)
 
@@ -64,5 +52,5 @@ class Classifier:
             self.train()
 
         features = extract_features([title], [body])
-        trust_score = self.clf.predict_proba(features)[0][0] * 10
+        trust_score = self.clf.predict_proba(features)[0][0]
         return round(trust_score, 2)

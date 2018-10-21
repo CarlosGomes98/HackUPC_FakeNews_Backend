@@ -16,9 +16,9 @@ class fake_o_meter(Resource):
         article_parser = ArticleParser(url)
         parsed_data = article_parser.parse()
 
-        score, related_article = rate(parsed_data["title"], parsed_data["body"])
+        score, related_article = rate(parsed_data["title"], parsed_data["body"], url)
 
-        return score, related_article
+        return [score, related_article]
 
 
 app = Flask(__name__)

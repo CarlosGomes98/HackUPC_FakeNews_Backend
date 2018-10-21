@@ -87,12 +87,7 @@ def cos_similarity(titles, bodies):
     vectorizer = fit_tf_idf(full_texts, text_type=Text.FULL)
     titles_tfidf = extract_tf_idf(titles, text_type=Text.FULL)
     bodies_tfidf = extract_tf_idf(bodies, text_type=Text.FULL)
-
-    print("IN COSINE SIMILARITY")
-    print(titles_tfidf.shape, bodies_tfidf.shape)
-
     similarities = [cosine_similarity(titles_tfidf[i, :], bodies_tfidf[i, :]) for i in range(titles_tfidf.shape[0])]
-    print("Similarities", len(similarities))
     similarities = np.asarray(similarities)
     return np.reshape(similarities, (-1, 1))
 
@@ -101,7 +96,6 @@ def coss_similarity(text1, text2):
     text1_tfidf = extract_tf_idf(text1, text_type=Text.FULL)
     text2_tfidf = extract_tf_idf(text2, text_type=Text.FULL)
 
-    print("IN COSINE SIMILARITY")
 
     similarity = cosine_similarity(text1_tfidf[0, :], text2_tfidf[0, :])
 
@@ -114,7 +108,6 @@ def extract_features(titles, bodies):
 
     combined_tf_idf = sparse.hstack([titles_tfidf, bodies_tfidf])
     cs = sparse.coo_matrix(cos_similarity(titles, bodies))
-    print("Cosine shape", cs.shape)
 
     X = sparse.hstack([combined_tf_idf, cs])
     truncatedSVD = TruncatedSVD(n_components=1000, n_iter=7, random_state=42)
@@ -126,6 +119,4 @@ def extract_features(titles, bodies):
         pickle.dump(truncatedSVD, open("model/pickles/SVD.sav", "wb"))
 
     X = svd.transform(X)
-    print("New X shape: ", X.shape)
-    print(X[0, :])
     return X
