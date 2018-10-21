@@ -7,6 +7,7 @@ def rate(title, body):
     clf = Classifier()
     classifier_score = clf.predict(title, body)
     # Get score from article searcher
-    search_score = searcher_score(title, body)
+    related_article, search_score = searcher_score(title, body)
+    #search_score = min(0.9, search_score * 2)
 
-    return classifier_score * 0.8 + search_score * 0.2
+    return classifier_score * 0.5 + search_score * 0.5

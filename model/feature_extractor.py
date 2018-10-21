@@ -4,6 +4,7 @@ from os import path
 from enum import Enum
 from scipy import sparse
 from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.decomposition import TruncatedSVD
 import numpy as np
 
 tfidf_pickle_path = 'model/pickles'
@@ -116,4 +117,15 @@ def extract_features(titles, bodies):
     print("Cosine shape", cs.shape)
 
     X = sparse.hstack([combined_tf_idf, cs])
+    truncatedSVD = TruncatedSVD(n_components=1000, n_iter=7, random_state=42)
+    if path.exists("model/pickles/SVD.sav"):
+        svd = pickle.load(open("model/pickles/SVD.sav", 'rb'))
+    else:
+        svd = TruncatedSVD(n_components=1000, n_iter=7, random_state=42)
+        svd.fit(X)
+        pickle.dump(truncatedSVD, open("model/pickles/SVD.sav", "wb"))
+
+    X = svd.transform(X)
+    print("New X shape: ", X.shape)
+    print(X[0, :])
     return X
