@@ -2,7 +2,12 @@
 
 Backend for google chrome extension that judges how trustworthy a news article is.
 
+Developed at HackUPC, a 36 hour hackathon!
+
 Frontend at: https://github.com/hendrikmolder/fake-o-meter
+
+Check out our devpost: https://devpost.com/software/hackupc_fakenews_backend
+
 
 # Run it!
 
