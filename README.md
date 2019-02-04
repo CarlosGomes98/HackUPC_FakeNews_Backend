@@ -10,9 +10,9 @@ Frontend at: https://github.com/hendrikmolder/fake-o-meter
 
 Check out our devpost: https://devpost.com/software/hackupc_fakenews_backend
 
-![demo](https://github.com/CarlosGomes98/HackUPC_FakeNews_Backend/demo/image_1.jpg)
+![demo](https://raw.githubusercontent.com/CarlosGomes98/HackUPC_FakeNews_Backend/master/demo/image_1.jpg)
 
-![demo](https://github.com/CarlosGomes98/HackUPC_FakeNews_Backend/demo/image_2.jpg)
+![demo](https://raw.githubusercontent.com/CarlosGomes98/HackUPC_FakeNews_Backend/master/demo/image_2.jpg)
 
 ### Run it!
 
